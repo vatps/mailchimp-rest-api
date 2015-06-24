@@ -1,0 +1,20 @@
+{
+    "name": "vatps/mailchimp-rest-api",
+    "description": "Very Easy to use MailChimp REST Enabled API 3.0 Wrapper Class.",
+    "keywords": ["mailchimp", "php", "api", "class"],
+    "homepage": "https://github.com/vatps/mailchimp-rest-api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "VAT PS",
+            "homepage": "http://vps.link"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-0": { "VPS": "src/" }
+    }
+}
