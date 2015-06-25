@@ -41,7 +41,9 @@ class MailChimp
 		
 		//Validate http verb
 		if(in_array($httpVerb, $allowedHttpVerbs)){
-			return $this->request($httpVerb, array_shift($arguments), $arguments);
+			$endPoint = $arguments[0];
+			$data = isset($arguments[1]) ? $arguments[1] : [];
+			return $this->request($httpVerb, $endPoint, $data);
 		}
 		
 		throw new \Exception('Invalid http verb!');
