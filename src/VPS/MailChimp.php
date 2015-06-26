@@ -37,12 +37,12 @@ class MailChimp
 	public function __call($method, $arguments)
 	{
 		$httpVerb = strtoupper($method);
-		$allowedHttpVerbs = ['GET', 'POST', 'PATCH', 'DELETE'];
+		$allowedHttpVerbs = array('GET', 'POST', 'PATCH', 'DELETE');
 		
 		//Validate http verb
 		if(in_array($httpVerb, $allowedHttpVerbs)){
 			$endPoint = $arguments[0];
-			$data = isset($arguments[1]) ? $arguments[1] : [];
+			$data = isset($arguments[1]) ? $arguments[1] : array();
 			return $this->request($httpVerb, $endPoint, $data);
 		}
 		
@@ -56,7 +56,7 @@ class MailChimp
 	* @param array $data - Optional
 	* @return array
 	*/
-	public function request($httpVerb = 'GET', $endPoint, array $data = [])
+	public function request($httpVerb = 'GET', $endPoint, $data = array())
 	{
 		//validate API
 		if(! $this->apiKey){
@@ -77,12 +77,12 @@ class MailChimp
 	* @param array $data - Optional
 	* @return array
 	*/
-	private function curlRequest($url, $httpVerb, array $data = [], $curlTimeout = 15)
+	private function curlRequest($url, $httpVerb, array $data = array(), $curlTimeout = 15)
 	{
 		if(function_exists('curl_init') && function_exists('curl_setopt')){
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 			curl_setopt($ch, CURLOPT_USERAGENT, 'VPS/MC-API:3.0');
 			curl_setopt($ch, CURLOPT_TIMEOUT, $curlTimeout);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -97,6 +97,7 @@ class MailChimp
 			
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$result = curl_exec($ch);
+			curl_close($ch);
 			
 			return $result ? json_decode($result, true) : false;
 		}
