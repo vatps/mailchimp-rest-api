@@ -37,7 +37,7 @@ class MailChimp
 	public function __call($method, $arguments)
 	{
 		$httpVerb = strtoupper($method);
-		$allowedHttpVerbs = array('GET', 'POST', 'PATCH', 'DELETE');
+		$allowedHttpVerbs = array('GET', 'POST', 'PUT', 'PATCH', 'DELETE');
 		
 		//Validate http verb
 		if(in_array($httpVerb, $allowedHttpVerbs)){
