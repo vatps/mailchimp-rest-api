@@ -53,8 +53,8 @@ class MailChimp
     
     /**
     * Call MailChimp API
-    * @param string $httpVerb
     * @param string $endPoint - (http://kb.mailchimp.com/api/resources)
+    * @param string $httpVerb
     * @param array $data - Optional
     * @return array
     */
