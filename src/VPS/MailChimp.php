@@ -43,7 +43,7 @@ class MailChimp
 		if(in_array($httpVerb, $allowedHttpVerbs)){
 			$endPoint = $arguments[0];
 			$data = isset($arguments[1]) ? $arguments[1] : array();
-			return $this->request($httpVerb, $endPoint, $data);
+			return $this->request($endPoint, $httpVerb, $data);
 		}
 		
 		throw new \Exception('Invalid http verb!');
@@ -56,7 +56,7 @@ class MailChimp
 	* @param array $data - Optional
 	* @return array
 	*/
-	public function request($httpVerb = 'GET', $endPoint, $data = array())
+	public function request($endPoint, $httpVerb = 'GET', $data = array())
 	{
 		//validate API
 		if(! $this->apiKey){
